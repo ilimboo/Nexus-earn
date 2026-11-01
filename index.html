@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NexusEarn</title>
+<meta name="theme-color" content="#070810">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="NexusEarn">
+<script>try{var ic="data:image/svg+xml,"+encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='#8b5cf6'/><text x='50' y='70' font-size='58' text-anchor='middle'>\u26a1</text></svg>");var mf={name:'NexusEarn',short_name:'NexusEarn',start_url:location.origin+location.pathname,scope:location.origin+location.pathname,display:'standalone',orientation:'portrait',background_color:'#070810',theme_color:'#070810',icons:[{src:ic,sizes:'any',type:'image/svg+xml',purpose:'any'}]};var ml=document.createElement('link');ml.rel='manifest';ml.href='data:application/manifest+json,'+encodeURIComponent(JSON.stringify(mf));document.head.appendChild(ml);var al=document.createElement('link');al.rel='apple-touch-icon';al.href=ic;document.head.appendChild(al)}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070810;--p1:#10121d;--p2:#171a29;--line:#262b40;--text:#eef1fa;--mute:#8f98b3;--a:#22d3ee;--b:#8b5cf6;--ok:#34d399;--bad:#f87171;--warn:#fbbf24;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark}}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f2f5fb;--p1:#fff;--p2:#f6f8fd;--line:#dfe4f0;--text:#141828;--mute:#5d6680;--a:#0891b2;--b:#7c3aed}}
+:root[data-theme="dark"]{--bg:#070810;--p1:#10121d;--p2:#171a29;--line:#262b40;--text:#eef1fa;--mute:#8f98b3;--a:#22d3ee;--b:#8b5cf6}
+:root[data-theme="light"]{--bg:#f2f5fb;--p1:#fff;--p2:#f6f8fd;--line:#dfe4f0;--text:#141828;--mute:#5d6680;--a:#0891b2;--b:#7c3aed}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Outfit',system-ui,sans-serif}
+.hidden{display:none!important}button,input{font:inherit}button{cursor:pointer}
+.shell{display:grid;grid-template-columns:220px 1fr;min-height:100vh}
+.side{background:var(--p1);border-right:1px solid var(--line);padding:20px 14px;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh}
+.logo{font-weight:800;font-size:20px;margin:0 8px 18px;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.nv{background:none;border:0;color:var(--mute);text-align:left;padding:11px 12px;border-radius:12px;font-weight:600;display:flex;gap:10px;align-items:center}
+.nv.on{background:var(--p2);color:var(--a)}
+.main{padding:22px 20px 40px;max-width:900px;width:100%}
+.demo{background:rgba(251,191,36,.12);border:1px solid var(--warn);color:var(--warn);padding:8px 12px;border-radius:12px;font-size:13px;margin-bottom:16px}
+.card{background:var(--p1);border:1px solid var(--line);border-radius:18px;padding:18px}
+.grid{display:grid;gap:14px}.g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}.g3{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.hero{background:linear-gradient(135deg,rgba(34,211,238,.18),rgba(139,92,246,.22)),var(--p1);border:1px solid var(--line);border-radius:22px;padding:22px;margin-bottom:14px}
+.big{font-size:44px;font-weight:800;line-height:1}
+.mute{color:var(--mute)}.sm{font-size:13px}
+h2{margin:0 0 14px;font-size:24px}h3{margin:0 0 4px;font-size:17px}
+.btn{background:linear-gradient(90deg,var(--a),var(--b));color:#fff;border:0;border-radius:12px;padding:11px 16px;font-weight:700}
+.btn.alt{background:var(--p2);color:var(--text);border:1px solid var(--line)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn:focus-visible,.nv:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--a);outline-offset:2px}
+.bar{height:10px;background:var(--line);border-radius:6px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--a),var(--b));transition:width .4s}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}.row:last-child{border:0}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:12px 0}
+.day{background:var(--p2);border:1px solid var(--line);border-radius:10px;padding:8px 0;text-align:center;font-size:12px}.day.done{border-color:var(--ok);color:var(--ok)}.day.next{border-color:var(--a)}
+input,select{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:11px;margin:4px 0 12px}
+.pos{color:var(--ok)}.neg{color:var(--bad)}.pend{color:var(--warn)}
+.badge{font-size:12px;padding:3px 9px;border-radius:20px;background:var(--p2);border:1px solid var(--line)}
+.ach{opacity:.4}.ach.on{opacity:1}
+.boxes{display:flex;gap:10px;margin:12px 0}.box{flex:1;font-size:34px;height:70px;border-radius:14px;border:1px solid var(--line);background:var(--p2)}
+.spin{font-size:42px;font-weight:800;text-align:center;color:var(--b);min-height:56px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
+.modal .card{width:100%;max-width:400px;text-align:center}
+#toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translate(-50%,160px);background:var(--p1);border:1px solid var(--line);border-left:4px solid var(--a);padding:11px 16px;border-radius:12px;transition:transform .25s;z-index:99;max-width:90vw}
+#toast.show{transform:translate(-50%,0)}
+.top{display:none}
+@media (max-width:760px){
+ .shell{display:block}
+ .side{position:fixed;bottom:0;left:0;right:0;top:auto;height:auto;flex-direction:row;justify-content:space-around;padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));z-index:20;border-right:0;border-top:1px solid var(--line)}
+ .logo{display:none}.nv{flex-direction:column;gap:2px;font-size:11px;padding:6px 8px;text-align:center}
+ .main{padding-bottom:100px}
+}
+.stg{padding:16px;text-align:center}.sky{position:relative;height:230px;background:linear-gradient(#0b1030,#1b1250 70%,#2a1b6e);overflow:hidden;border-radius:14px}
+.sky i{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;opacity:.7;animation:fall 1.2s linear infinite}
+@keyframes fall{to{transform:translateY(240px)}}
+.rkt{position:absolute;left:50%;bottom:20px;font-size:44px;transform:translateX(-50%);transition:bottom .1s linear}
+.mult{position:absolute;top:12px;left:0;right:0;font-size:44px;font-weight:800;color:#fff}
+.coin{width:110px;height:110px;margin:14px auto;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:46px;font-weight:800;color:#7c4a03;background:radial-gradient(#fde68a,#f59e0b);box-shadow:0 8px 24px rgba(245,158,11,.4)}
+.coin.go{animation:flip 1.1s ease-in-out}
+@keyframes flip{0%{transform:rotateY(0) translateY(0)}50%{transform:rotateY(900deg) translateY(-70px)}100%{transform:rotateY(1800deg) translateY(0)}}
+.mg{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:340px;margin:12px auto}
+.mg button{aspect-ratio:1;font-size:24px;border-radius:12px;border:1px solid var(--line);background:var(--p2);color:var(--text);transition:transform .15s}
+.mg button:hover:not(:disabled){transform:scale(1.06)}
+.mg button.gem{background:rgba(52,211,153,.2);border-color:var(--ok);animation:pop .3s}
+.mg button.bomb{background:rgba(248,113,113,.25);border-color:var(--bad);animation:boom .45s}
+@keyframes pop{0%{transform:scale(.6)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
+@keyframes boom{0%{transform:scale(.5)}40%{transform:scale(1.4) rotate(8deg)}100%{transform:scale(1)}}
+.shk{animation:shake .4s}.pp{animation:pop .4s}@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.felt{background:radial-gradient(#0f6b3f,#0a3d25);border:6px solid #5b3a1a;border-radius:20px;padding:14px;color:#d1fae5}.hand{display:flex;gap:8px;min-height:92px;justify-content:center;margin:8px 0;flex-wrap:wrap}
+.pc{width:58px;height:84px;border-radius:8px;background:#fff;color:#111;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:22px;line-height:1.1;box-shadow:0 4px 10px rgba(0,0,0,.4)}.pc.red{color:#dc2626}
+.pc.down{background:repeating-linear-gradient(45deg,#7c3aed,#7c3aed 6px,#4c1d95 6px,#4c1d95 12px);border:3px solid #fff}
+.deal{animation:deal .4s ease-out}@keyframes deal{from{transform:translate(120px,-90px) rotate(20deg);opacity:0}}.flipc{animation:flipc .45s}@keyframes flipc{from{transform:rotateY(90deg)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<section id="land" class="hidden" style="max-width:560px;margin:0 auto;padding:70px 20px;text-align:center">
+  <div class="demo">Demo mode: points are simulated and nothing is paid out yet.</div>
+  <h1 style="font-size:clamp(40px,9vw,64px);margin:26px 0 10px;line-height:1.05">Play. Earn. Level up.</h1>
+  <p class="mute">Mini-games, daily missions and rewarded videos. 1,000 points = $1.00 once payouts are connected.</p>
+  <button class="btn" style="padding:14px 28px;margin-top:14px" onclick="openAuth()">Get started</button>
+</section>
+
+<div id="app" class="shell hidden">
+ <nav class="side" aria-label="Main">
+  <div class="logo">⚡ NexusEarn</div>
+  <button class="nv on" data-t="home" onclick="go('home')">🏠 <span>Home</span></button>
+  <button class="nv" data-t="earn" onclick="go('earn')">🎮 <span>Earn</span></button>
+  <button class="nv" data-t="quests" onclick="go('quests')">🎯 <span>Quests</span></button>
+  <button class="nv" data-t="rewards" onclick="go('rewards')">💸 <span>Rewards</span></button>
+  <button class="nv" data-t="casino" onclick="casino()">🎰 <span>Casino</span></button>
+  <button class="nv" data-t="me" onclick="go('me')">👤 <span>Profile</span></button>
+ </nav>
+ <main class="main">
+  <div class="demo">Demo mode: points are simulated. No money is paid out until you connect a real ad network and payout system.</div>
+
+  <!-- HOME -->
+  <section id="v-home">
+   <div class="hero">
+    <div class="mute sm">Balance</div><div class="big"><span id="bal">0</span> <span class="mute" style="font-size:18px">pts</span></div>
+    <div class="mute" id="usd"></div>
+    <div style="margin-top:14px"><b id="lvl">Level 1</b> <span class="mute sm" id="xpTxt"></span><div class="bar"><i id="xp"></i></div></div>
+   </div>
+   <div class="card" style="margin-bottom:14px">
+    <h3>Daily check-in</h3><div class="mute sm" id="stk"></div>
+    <div class="days" id="days"></div>
+    <button class="btn" id="ci" onclick="checkin()">Check in</button>
+   </div>
+   <div class="grid g3" style="margin-bottom:14px">
+    <div class="card"><div class="mute sm">Total earned</div><div class="big" style="font-size:28px" id="earned">0</div></div>
+    <div class="card"><div class="mute sm">Games played</div><div class="big" style="font-size:28px" id="played">0</div></div>
+    <div class="card"><div class="mute sm">Videos left today</div><div class="big" style="font-size:28px" id="adsLeft">0</div></div>
+   </div>
+   <div class="card"><h3>Recent activity</h3><div id="hist"></div></div>
+  </section>
+
+  <!-- EARN -->
+  <section id="v-earn" class="hidden">
+   <h2>Earn points</h2><p class="mute sm" id="cool"></p>
+   <div class="grid g2">
+    <div class="card"><h3>🎲 Guess the number</h3><p class="mute sm">Pick 1–10. Match to win <span id="gR"></span> pts. <b id="gL"></b> left.</p>
+     <input type="number" id="guess" min="1" max="10" placeholder="1–10" aria-label="Your guess"><button class="btn" onclick="playGuess()" data-g>Guess</button></div>
+    <div class="card"><h3>🎡 Lucky spin</h3><p class="mute sm">Win <span id="sR"></span> pts. <b id="sL"></b> left.</p>
+     <div class="spin" id="spinOut">?</div><button class="btn" style="width:100%" onclick="playSpin()" data-g>Spin</button></div>
+    <div class="card"><h3>🎁 Mystery box</h3><p class="mute sm">Pick one box. Prizes are 5 to 80 pts. <b id="mL"></b> left.</p>
+     <div class="boxes" id="boxes"></div></div>
+    <div class="card"><h3>⚡ Tap burst</h3><p class="mute sm">Tap as fast as you can for 10s. Every 3 taps = 1 pt (max 60). <b id="tL"></b> left.</p>
+     <div class="spin" id="tapOut">0</div><button class="btn" style="width:100%" id="tapBtn" onclick="tapGame()" data-g>Start</button></div>
+    <div class="card"><h3>📺 Watch a video</h3><p class="mute sm">Earn <span id="vR"></span> pts per video.</p>
+     <button class="btn" style="width:100%" id="vBtn" onclick="startAd(CFG.adReward,'Watched video ad','ad')">Watch now</button></div>
+   </div>
+  </section>
+
+  <!-- QUESTS -->
+  <section id="v-quests" class="hidden">
+   <h2>Daily quests</h2><div class="card" id="qs" style="margin-bottom:14px"></div>
+   <h2>Achievements</h2><div class="grid g3" id="achs"></div>
+  </section>
+
+  <!-- REWARDS -->
+  <section id="v-rewards" class="hidden">
+   <h2>Rewards</h2>
+   <div class="card" style="margin-bottom:14px"><p class="mute sm" id="rNote"></p>
+    <label class="sm mute" for="payTo">Payout email or wallet address</label>
+    <input id="payTo" placeholder="you@example.com" autocomplete="email"></div>
+   <div class="grid g3" id="rw"></div>
+   <div class="card" style="margin-top:14px"><h3>Withdrawal requests</h3><div id="wd"></div></div>
+  </section>
+
+  <!-- CASINO -->
+  <section id="v-casino" class="hidden">
+   <h2>🎰 Casino <span class="badge">Fun chips only</span></h2>
+   <div class="demo">Virtual chips for fun. No cash value. They can’t be bought, withdrawn, or exchanged for points. 18+ only.</div>
+   <div class="hero"><div class="mute sm">Fun chips</div><div class="big"><span id="chips">0</span></div><div class="mute sm" id="cnet"></div>
+    <div style="display:flex;gap:8px;align-items:center;margin:12px 0"><input id="betAmt" type="number" min="1" max="1000" step="1" value="25" inputmode="numeric" style="margin:0" aria-label="Bet amount in chips"><button class="btn alt" onclick="betMul(.5)">½</button><button class="btn alt" onclick="betMul(2)">2×</button><button class="btn alt" onclick="betMul(0)">Max</button></div>
+    <button class="btn alt" onclick="refill()">Claim free chips</button></div>
+   <div class="card" id="stage" style="margin-bottom:14px;padding:0;overflow:hidden;min-height:150px"><div class="mute" style="padding:50px 16px;text-align:center">Pick a game below to start.</div></div>
+   <div id="hst" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px"></div>
+   <div class="card" style="margin-bottom:14px;text-align:center"><div id="crT" class="mute">Results show here.</div><div class="big" id="crV" style="font-size:24px;margin-top:6px"></div></div>
+   <div class="grid g2" id="games"></div>
+  </section>
+
+  <!-- PROFILE -->
+  <section id="v-me" class="hidden">
+   <h2>Profile</h2>
+   <div class="card" style="margin-bottom:14px"><b id="uname"></b> <span class="badge" id="lvlBadge"></span>
+    <p class="mute sm" id="uinfo"></p>
+    <p class="mute sm">Invite code (works once a backend tracks referrals)</p>
+    <div class="row"><b id="code"></b><button class="btn alt" onclick="copyCode()">Copy</button></div></div>
+   <div class="card" style="margin-bottom:14px"><h3>Level &amp; rank</h3><div><b id="pLv"></b> <span class="badge" id="pRank"></span></div><div class="bar"><i id="pXp"></i></div><p class="mute sm" id="pXpT"></p></div>
+   <div class="card" style="margin-bottom:14px"><h3>Leaderboard</h3><div style="display:flex;gap:8px;margin-bottom:8px"><button class="btn alt" onclick="lb('earned')">Points earned</button><button class="btn alt" onclick="lb('chips')">Casino chips</button></div><div id="lbList"></div><p class="mute sm">Shows accounts on this device only. A worldwide leaderboard needs the online backend.</p></div>
+   <div class="card" style="margin-bottom:14px"><h3>Settings</h3>
+    <div class="row"><span>Theme</span><button class="btn alt" onclick="theme()">Switch light / dark</button></div>
+    <div class="row"><span>Log out</span><button class="btn alt" onclick="logout()">Log out</button></div></div>
+  </section>
+ </main>
+</div>
+
+<div id="auth" class="modal hidden" role="dialog" aria-modal="true"><div class="card" style="text-align:left">
+ <div class="row" style="border:0"><h3 id="aT">Log in</h3><button class="btn alt" onclick="closeAuth()" aria-label="Close">✕</button></div>
+ <form id="af" onsubmit="submitAuth(event)">
+  <label class="sm mute" for="u">Username (unique, 3-20 letters, numbers or _)</label><input id="u" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+" autocomplete="username">
+  <div id="regF" class="hidden">
+   <label class="sm mute" for="em">Email</label><input id="em" type="email" maxlength="80" autocomplete="email">
+   <label class="sm mute" for="ag">Age (13+)</label><input id="ag" type="number" min="13" max="120" inputmode="numeric">
+   <label class="sm mute" for="co">Country</label><select id="co"></select>
+  </div>
+  <label class="sm mute" for="p">Password</label><input id="p" type="password" required autocomplete="current-password">
+  <p class="sm mute hidden" id="pwH" style="margin-top:-6px">10+ characters with upper case, lower case and a number.</p>
+  <button class="btn" style="width:100%" id="aB">Log in</button></form>
+ <form id="vf" class="hidden" onsubmit="submitVerify(event)">
+  <p class="sm mute" id="vMsg"></p>
+  <div class="big" id="vShow" style="font-size:30px;letter-spacing:6px;text-align:center;color:var(--a)"></div>
+  <label class="sm mute" for="vc">6-digit code</label><input id="vc" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" autocomplete="one-time-code" required>
+  <button class="btn" style="width:100%">Verify email</button>
+  <p class="sm" style="text-align:center"><a href="#" onclick="resendV();return false" style="color:var(--a)">Resend code</a></p></form>
+ <p class="sm mute" style="text-align:center"><a href="#" id="aS" onclick="swapAuth();return false" style="color:var(--a)">Need an account? Register</a></p></div></div>
+
+<div id="res" class="modal hidden" role="dialog" aria-modal="true"><div class="card">
+ <div style="font-size:40px" id="resIc">🎉</div><h3 id="resT"></h3><div class="big" id="resV" style="margin:8px 0 14px;color:var(--ok)"></div>
+ <div id="adBox" class="hidden"><div class="mute sm">Sponsored (simulated)</div><div class="bar"><i id="adBar" style="transition:width 5s linear"></i></div><div class="mute sm" id="adT" style="margin:8px 0"></div></div>
+ <div class="grid" id="resBtns"><button class="btn" id="c1" onclick="claim(1)">Claim</button><button class="btn alt" id="c2" onclick="doubleIt()">Double it: watch a video</button></div></div></div>
+<div id="disc" class="modal hidden" role="dialog" aria-modal="true"><div class="card" style="text-align:left">
+ <h3>⚠️ Gambling disclaimer</h3>
+ <ul class="sm mute" style="padding-left:18px;line-height:1.6">
+  <li>These are games of chance played with <b>virtual fun chips only</b>. No real money is wagered or won.</li>
+  <li>Chips have no cash value and can’t be bought, withdrawn, or exchanged for points or rewards. Your earned points are never used here.</li>
+  <li>For adults aged 18 or over only. Don’t use it where gambling or simulated gambling is restricted.</li>
+  <li>Every game favors the house over time, so most players lose chips in the long run. Results are random and can’t be predicted.</li>
+  <li>Playing for fun doesn’t predict success at real gambling. If gambling is causing you stress or harm, stop and talk to someone you trust or a local support service.</li></ul>
+ <label class="sm"><input type="checkbox" id="discOk" style="width:auto;margin:0 8px 0 0">I am 18 or over and I understand</label>
+ <div class="grid" style="margin-top:14px"><button class="btn" onclick="acceptDisc()">Enter casino</button><button class="btn alt" onclick="$('disc').classList.add('hidden')">Cancel</button></div></div></div>
+<div id="toast" role="status"></div>
+
+<script>
+const CFG={ptsPerUSD:1000,adReward:20,guess:25,spin:[5,50],box:[5,10,20,80],boxW:[50,30,15,5],tapCap:60,
+ playsPerGame:5,adsPerDay:10,cooldown:15,adSec:5,minCash:1,streakBonus:[10,15,20,25,30,40,75],
+ rewards:[{n:'PayPal',usd:1,ic:'💳'},{n:'Bitcoin',usd:1.5,ic:'₿'},{n:'Steam gift card',usd:5,ic:'🎮'},{n:'Amazon gift card',usd:10,ic:'📦'}]};
+const QUESTS=[{id:'q1',t:'Play 3 games',k:'g',n:3,r:30},{id:'q2',t:'Watch 2 videos',k:'a',n:2,r:25},{id:'q3',t:'Earn 200 points today',k:'e',n:200,r:50}];
+const ACH=[{id:'a1',ic:'🌱',t:'First win',f:u=>u.earned>0},{id:'a2',ic:'💰',t:'Earn 1,000 pts',f:u=>u.earned>=1000},{id:'a3',ic:'🔥',t:'3-day streak',f:u=>u.streak>=3},{id:'a4',ic:'🏆',t:'Reach level 5',f:u=>lvOf(u)>=5},{id:'a5',ic:'💸',t:'First cash-out request',f:u=>u.wd.length>0},{id:'a6',ic:'🎮',t:'Play 50 games',f:u=>u.played>=50}];
+const $=id=>document.getElementById(id),fmt=n=>Math.floor(n).toLocaleString(),today=()=>new Date().toISOString().slice(0,10);
+let users={},cur=null;try{users=JSON.parse(localStorage.getItem('nx2')||'{}');cur=sessionStorage.getItem('nx2c')}catch(e){}
+const save=()=>{try{localStorage.setItem('nx2',JSON.stringify(users))}catch(e){}},me=()=>users[cur];
+const rank=l=>l>=12?'\ud83d\udc8e Diamond':l>=8?'\ud83e\udd47 Gold':l>=5?'\ud83e\udd48 Silver':l>=3?'\ud83e\udd49 Bronze':'\ud83c\udf31 Rookie';let lbMode='earned';
+function lb(m){if(m)lbMode=m;const e=$('lbList');if(!e)return;e.innerHTML='';
+ Object.keys(users).map(n=>({n,l:lvOf(users[n]),v:lbMode==='earned'?users[n].earned||0:users[n].chips==null?1000:users[n].chips})).sort((a,b)=>b.v-a.v).slice(0,10).forEach((x,k)=>{const r=document.createElement('div'),a=document.createElement('span'),b=document.createElement('b');r.className='row';
+  a.textContent=(k<3?['\ud83e\udd47','\ud83e\udd48','\ud83e\udd49'][k]:(k+1)+'.')+' '+x.n+(x.n===cur?' (you)':'')+' \u00b7 Lv '+x.l;b.textContent=fmt(x.v)+(lbMode==='earned'?' pts':' chips');r.append(a,b);e.append(r)})}
+const lvOf=u=>Math.floor(Math.sqrt(u.earned/150))+1,xpFor=l=>(l-1)*(l-1)*150;
+function toast(m){const e=$('toast');e.textContent=m;e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),2500)}
+const b2h=b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join(''),rhex=n=>b2h(crypto.getRandomValues(new Uint8Array(n))),te=new TextEncoder();
+async function hash(p,s){const k=await crypto.subtle.importKey('raw',te.encode(p),'PBKDF2',false,['deriveBits']);return b2h(await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt:te.encode(s),iterations:310000},k,256))}
+async function oldHash(p,s){return b2h(await crypto.subtle.digest('SHA-256',te.encode(s+p)))}
+function same(a,b){if(a.length!==b.length)return false;let d=0;for(let i=0;i<a.length;i++)d|=a.charCodeAt(i)^b.charCodeAt(i);return d===0}
+const CC='IN US GB CA AU NZ IE DE FR ES IT NL SE NO DK FI CH AT BE PT PL BR MX AR CL CO JP KR CN SG MY ID PH TH VN PK BD LK NP AE SA TR ZA NG KE EG IL'.split(' '),RESERVED=['__proto__','constructor','prototype','admin','administrator','root','support','nexusearn'];
+function fillCo(){const s=$('co');if(s.options.length)return;const dn=new Intl.DisplayNames(['en'],{type:'region'});s.add(new Option('Select country',''));CC.map(c=>[c,dn.of(c)]).sort((a,b)=>a[1].localeCompare(b[1])).forEach(([c,n])=>s.add(new Option(n,c)))}
+const strong=(p,n)=>p.length>=10&&/[a-z]/.test(p)&&/[A-Z]/.test(p)&&/\d/.test(p)&&!p.toLowerCase().includes(n);
+// AUTH
+let mode='login';
+function openAuth(){$('auth').classList.remove('hidden');$('u').focus()}function closeAuth(){$('auth').classList.add('hidden')}
+function showLogin(){mode='reg';swapAuth()}
+function swapAuth(){mode=mode==='login'?'reg':'login';const r=mode==='reg';fillCo();$('regF').classList.toggle('hidden',!r);$('pwH').classList.toggle('hidden',!r);$('p').minLength=r?10:0;$('af').classList.remove('hidden');$('vf').classList.add('hidden');$('aT').textContent=r?'Create account':'Log in';$('aB').textContent=r?'Register':'Log in';$('aS').textContent=r?'Have an account? Log in':'Need an account? Register';$('p').autocomplete=r?'new-password':'current-password'}
+let pv=null;
+function startVerify(n){const code=String(crypto.getRandomValues(new Uint32Array(1))[0]%1000000).padStart(6,'0');pv={n,code,exp:Date.now()+6e5,tries:0};
+ $('af').classList.add('hidden');$('vf').classList.remove('hidden');$('aT').textContent='Verify your email';
+ $('vMsg').textContent='A 6-digit code would be emailed to '+users[n].em+'. Demo mode: no email service is connected, so the code is shown here:';$('vShow').textContent=code;$('vc').value='';$('vc').focus()}
+function resendV(){if(!pv)return;startVerify(pv.n);toast('New code generated.')}
+function submitVerify(e){e.preventDefault();if(!pv)return;if(Date.now()>pv.exp)return toast('Code expired. Tap Resend code.');
+ if(++pv.tries>5){pv=null;return toast('Too many tries. Log in again for a new code.')}
+ if($('vc').value.trim()!==pv.code)return toast('Wrong code.');
+ users[pv.n].ver=true;save();pv=null;$('p').value='';toast('Email verified. You can log in now.');showLogin()}
+async function submitAuth(e){e.preventDefault();const n=$('u').value.trim().toLowerCase(),pw=$('p').value;
+ if(mode==='reg'){const em=$('em').value.trim().toLowerCase(),age=parseInt($('ag').value,10),co=$('co').value;
+  if(!/^[a-z0-9_]{3,20}$/.test(n)||RESERVED.includes(n))return toast('Choose a different username.');
+  if(Object.hasOwn(users,n))return toast('That username is already taken.');
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(em))return toast('Enter a valid email address.');
+  if(Object.values(users).some(x=>x.em===em))return toast('That email is already registered.');
+  if(!(age>=13&&age<=120))return toast('You must be 13 or older.');
+  if(!co)return toast('Select your country.');
+  if(!strong(pw,n))return toast('Password needs 10+ characters, upper case, lower case and a number.');
+  const s=rhex(16);
+  users[n]={s,h:await hash(pw,s),v:2,em,age,co,ver:false,fail:0,lock:0,pts:0,earned:0,played:0,hist:[],wd:[],day:'',g:{guess:0,spin:0,box:0,tap:0},ads:0,dayEarn:0,dayPlays:0,dayAds:0,q:{},last:0,streak:0,ci:'',ach:{},code:'NX'+Math.random().toString(36).slice(2,8).toUpperCase()};
+  save();startVerify(n)}
+ else{const u=Object.hasOwn(users,n)?users[n]:null;
+  if(!u){await hash(pw,'0'.repeat(32));return toast('Wrong username or password.')}
+  if(u.lock>Date.now())return toast('Too many attempts. Try again in '+Math.ceil((u.lock-Date.now())/1000)+'s.');
+  const ok=u.v===2?same(await hash(pw,u.s),u.h):same(await oldHash(pw,u.s),u.h);
+  if(!ok){u.fail=(u.fail||0)+1;if(u.fail>=5)u.lock=Date.now()+Math.min(900,30*2**(u.fail-5))*1000;save();return toast('Wrong username or password.')}
+  u.fail=0;u.lock=0;
+  if(u.v!==2){u.s=rhex(16);u.h=await hash(pw,u.s);u.v=2}
+  save();
+  if(u.ver===false)return startVerify(n);
+  cur=n;try{sessionStorage.setItem('nx2c',n)}catch(e){}closeAuth();init()}}
+function logout(){cur=null;try{sessionStorage.removeItem('nx2c')}catch(e){}init()}
+function theme(){const r=document.documentElement,d=r.dataset.theme==='dark'||(!r.dataset.theme&&matchMedia('(prefers-color-scheme:dark)').matches);r.dataset.theme=d?'light':'dark'}
+function newDay(){const u=me();if(u.day!==today()){Object.assign(u,{day:today(),g:{guess:0,spin:0,box:0,tap:0},dayEarn:0,dayPlays:0,dayAds:0,q:{}});save()}}
+function init(){const on=cur&&users[cur];$('land').classList.toggle('hidden',!!on);$('app').classList.toggle('hidden',!on);if(on){newDay();go('home')}}
+function go(t){['home','earn','quests','rewards','casino','me'].forEach(v=>$('v-'+v).classList.toggle('hidden',v!==t));document.querySelectorAll('.nv').forEach(b=>b.classList.toggle('on',b.dataset.t===t));render()}
+// ECONOMY
+function add(v,text){const u=me();u.pts+=v;u.earned+=v;u.dayEarn+=v;u.hist.unshift({a:text,v});u.hist.length=Math.min(u.hist.length,30);save()}
+function checkAch(){const u=me();ACH.forEach(a=>{if(!u.ach[a.id]&&a.f(u)){u.ach[a.id]=1;toast('Achievement: '+a.t+' '+a.ic)}})}
+function cool(){const u=me();return Math.max(0,Math.ceil((u.last+CFG.cooldown*1000-Date.now())/1000))}
+function can(k){newDay();const u=me();if(u.g[k]>=CFG.playsPerGame){toast('Daily limit reached for this game.');return false}if(cool()){toast('Wait '+cool()+'s.');return false}return true}
+function played(k){const u=me();u.g[k]++;u.played++;u.dayPlays++;u.last=Date.now();save()}
+// RESULT + CLAIM
+let pend=null,adT=null;
+function result(v,text,ic,kind){pend={v,text,kind};$('resIc').textContent=ic;$('resT').textContent=text;$('resV').textContent=v?'+'+v+' pts':'No prize';
+ $('adBox').classList.add('hidden');$('res').classList.remove('hidden');
+ $('c1').textContent=kind==='ad'?'Claim':'Claim';$('c1').disabled=false;$('c2').classList.toggle('hidden',kind==='ad'||v===0);$('c2').disabled=false;
+ if(!v){$('c1').textContent='OK'}}
+function claim(m){if(!pend)return;const p=pend;pend=null;$('res').classList.add('hidden');if(p.v){add(p.v*m,p.text+(m>1?' (x2)':''));if(p.kind==='ad'){me().dayAds++;me().ads++}toast('+'+p.v*m+' points!')}checkAch();render()}
+function runAd(done){$('c1').disabled=true;$('c2').disabled=true;$('adBox').classList.remove('hidden');const b=$('adBar');b.style.transition='none';b.style.width='0';void b.offsetWidth;b.style.transition='width '+CFG.adSec+'s linear';b.style.width='100%';
+ let l=CFG.adSec;$('adT').textContent=l+'s remaining';clearInterval(adT);adT=setInterval(()=>{l--;$('adT').textContent=l>0?l+'s remaining':'Done';if(l<=0){clearInterval(adT);done()}},1000)}
+function doubleIt(){runAd(()=>claim(2))}
+function startAd(v,text,kind){newDay();const u=me();if(u.dayAds>=CFG.adsPerDay)return toast('No videos left today.');result(v,text,'📺','ad');$('c1').disabled=true;runAd(()=>{$('adBox').classList.add('hidden');$('c1').disabled=false;$('c1').textContent='Claim'})}
+// GAMES
+function playGuess(){const g=parseInt($('guess').value,10);if(!(g>=1&&g<=10))return toast('Enter 1 to 10.');if(!can('guess'))return;played('guess');$('guess').value='';const n=1+Math.floor(Math.random()*10);
+ if(g===n)result(CFG.guess,'You guessed it! (number was '+n+')','🎲','game');else{toast('Not this time. It was '+n+'.');render()}}
+let spinning=false;
+function playSpin(){if(spinning||!can('spin'))return;spinning=true;played('spin');const[a,b]=CFG.spin,rnd=()=>a+Math.floor(Math.random()*(b-a+1)),w=rnd();let i=0;
+ const t=setInterval(()=>{i++;$('spinOut').textContent=i>18?w:rnd();if(i>18){clearInterval(t);spinning=false;result(w,'Lucky spin','🎡','game')}},60)}
+function boxes(){$('boxes').innerHTML='';for(let i=0;i<3;i++){const b=document.createElement('button');b.className='box';b.textContent='🎁';b.setAttribute('aria-label','Mystery box '+(i+1));b.onclick=()=>{if(!can('box'))return;played('box');
+ let r=Math.random()*100,k=0,acc=0;CFG.boxW.forEach((w,j)=>{acc+=w;if(r>=acc)k=j+1});k=Math.min(k,CFG.box.length-1);const v=CFG.box[k];result(v,'Mystery box','🎁','game')};$('boxes').append(b)}}
+let tapping=false;
+function tapGame(){const btn=$('tapBtn');if(tapping){if(btn._n!==undefined){btn._n++;$('tapOut').textContent=btn._n;}return}if(!can('tap'))return;played('tap');tapping=true;btn._n=0;$('tapOut').textContent=0;btn.textContent='TAP!';let l=10;btn.dataset.left=l;
+ const t=setInterval(()=>{l--;btn.textContent='TAP! '+l+'s';if(l<=0){clearInterval(t);tapping=false;btn.textContent='Start';const v=Math.min(CFG.tapCap,Math.floor(btn._n/3));btn._n=undefined;result(v,'Tap burst','⚡','game')}},1000)}
+// QUESTS / CHECK-IN
+const qv=(q,u)=>q.k==='g'?u.dayPlays:q.k==='a'?u.dayAds:u.dayEarn;
+function claimQ(id){const u=me(),q=QUESTS.find(x=>x.id===id);if(u.q[id]||qv(q,u)<q.n)return;u.q[id]=1;add(q.r,'Quest: '+q.t);toast('+'+q.r+' points!');checkAch();render()}
+function checkin(){newDay();const u=me();if(u.ci===today())return;const y=new Date(Date.now()-864e5).toISOString().slice(0,10);u.streak=u.ci===y?u.streak+1:1;u.ci=today();const v=CFG.streakBonus[(u.streak-1)%7];add(v,'Daily check-in (day '+u.streak+')');toast('+'+v+' points!');checkAch();render()}
+function copyCode(){try{navigator.clipboard.writeText(me().code);toast('Code copied.')}catch(e){toast('Copy failed.')}}
+function redeem(r){const u=me(),cost=Math.round(r.usd*CFG.ptsPerUSD),to=$('payTo').value.trim();if(u.age&&u.age<18)return toast('You must be 18 or older to cash out.');if(!to)return toast('Enter your payout email or wallet first.');if(u.pts<cost)return;u.pts-=cost;u.hist.unshift({a:'Cash-out request: '+r.n,v:-cost});u.wd.unshift({n:r.n+' $'+r.usd.toFixed(2),to});save();checkAch();render();toast('Request submitted: pending.')}
+// RENDER
+function li(parent,a,b,cls){const r=document.createElement('div');r.className='row';const x=document.createElement('span');x.textContent=a;const y=document.createElement('b');y.className=cls;y.textContent=b;r.append(x,y);parent.append(r)}
+function render(){const u=me();if(!u)return;newDay();const l=lvOf(u),lo=xpFor(l),hi=xpFor(l+1);
+ $('bal').textContent=fmt(u.pts);$('usd').textContent='≈ $'+(u.pts/CFG.ptsPerUSD).toFixed(2);$('lvl').textContent='Level '+l;$('xpTxt').textContent=fmt(hi-u.earned)+' pts to level '+(l+1);$('xp').style.width=((u.earned-lo)/(hi-lo)*100)+'%';
+ $('earned').textContent=fmt(u.earned);$('played').textContent=u.played;$('adsLeft').textContent=Math.max(0,CFG.adsPerDay-u.dayAds);
+ $('stk').textContent=u.streak?u.streak+'-day streak':'Start your streak today';const dn=u.ci===today(),pos=dn?(u.streak-1)%7:u.streak%7;
+ $('days').innerHTML='';CFG.streakBonus.forEach((v,i)=>{const d=document.createElement('div');d.className='day'+(dn&&i<=pos||!dn&&i<pos&&u.streak?' done':'')+(!dn&&i===pos?' next':'');d.innerHTML='D'+(i+1)+'<br><b>+'+v+'</b>';$('days').append(d)});
+ $('ci').disabled=dn;$('ci').textContent=dn?'Checked in today':'Check in (+'+CFG.streakBonus[u.streak?u.streak%7:0]+' pts)';
+ $('hist').innerHTML='';if(!u.hist.length)$('hist').innerHTML='<p class="mute sm">No activity yet. Try a game on the Earn tab.</p>';u.hist.slice(0,8).forEach(h=>li($('hist'),h.a,(h.v>0?'+':'')+h.v,h.v>0?'pos':'neg'));
+ $('gR').textContent=CFG.guess;$('sR').textContent=CFG.spin.join('–');$('vR').textContent=CFG.adReward;
+ ['guess','spin','box','tap'].forEach(k=>$({guess:'gL',spin:'sL',box:'mL',tap:'tL'}[k]).textContent=Math.max(0,CFG.playsPerGame-u.g[k])+' plays');
+ $('cool').textContent=cool()?'Next play in '+cool()+'s':'';if(cool())setTimeout(render,1000);
+ $('vBtn').disabled=u.dayAds>=CFG.adsPerDay;
+ $('qs').innerHTML='';QUESTS.forEach(q=>{const v=Math.min(qv(q,u),q.n),r=document.createElement('div');r.className='row';r.innerHTML='<div style="flex:1"><b>'+q.t+'</b> <span class="mute sm">'+v+'/'+q.n+'</span><div class="bar"><i style="width:'+v/q.n*100+'%"></i></div></div>';
+  const b=document.createElement('button');b.className='btn';b.textContent=u.q[q.id]?'Done':'+'+q.r;b.disabled=!!u.q[q.id]||v<q.n;b.onclick=()=>claimQ(q.id);r.append(b);$('qs').append(r)});
+ $('achs').innerHTML='';ACH.forEach(a=>{const c=document.createElement('div');c.className='card ach'+(u.ach[a.id]?' on':'');c.innerHTML='<div style="font-size:28px">'+a.ic+'</div><b>'+a.t+'</b>';$('achs').append(c)});
+ $('rNote').textContent='Minimum cash-out is $'+CFG.minCash.toFixed(2)+'. Requests stay pending until a payout system is connected.';
+ $('rw').innerHTML='';CFG.rewards.forEach(r=>{const cost=Math.round(r.usd*CFG.ptsPerUSD),c=document.createElement('div');c.className='card';c.style.textAlign='center';c.innerHTML='<div style="font-size:36px">'+r.ic+'</div><h3>'+r.n+'</h3><p class="mute">$'+r.usd.toFixed(2)+'</p>';
+  const b=document.createElement('button');b.className='btn';b.textContent=fmt(cost)+' pts';b.disabled=u.pts<cost||r.usd<CFG.minCash;b.onclick=()=>redeem(r);c.append(b);$('rw').append(c)});
+ $('wd').innerHTML='';if(!u.wd.length)$('wd').innerHTML='<p class="mute sm">No requests yet.</p>';u.wd.slice(0,8).forEach(w=>li($('wd'),w.n+' → '+w.to,'Pending','pend'));
+ casinoRender();$('uname').textContent=cur;$('uinfo').textContent=u.em?u.em.replace(/^(.).*(@.*)$/,'$1***$2')+' · '+(u.co?new Intl.DisplayNames(['en'],{type:'region'}).of(u.co):'')+' · age '+u.age+' · email verified':'Older account: no email, age or country on file.';$('lvlBadge').textContent='Level '+l;$('pLv').textContent='Level '+l;$('pRank').textContent=rank(l);$('pXp').style.width=Math.min(100,(u.earned-lo)/(hi-lo)*100)+'%';$('pXpT').textContent=fmt(hi-u.earned)+' pts to level '+(l+1);lb();$('code').textContent=u.code;save()}
+// CASINO: virtual chips only, separate from points, no cash value
+const R=()=>crypto.getRandomValues(new Uint32Array(1))[0]/4294967296,ri=(a,b)=>a+Math.floor(R()*(b-a+1));
+const pick=t=>{let r=R()*t.reduce((s,x)=>s+x[1],0);for(const x of t){if((r-=x[1])<0)return x[0]}return t[0][0]};
+const RED=[1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36],SYM=['🍒','🍋','🔔','⭐','7️⃣','💎'],BETS=[10,25,50,100,250];let bet=25;
+const GAMES=[
+ {n:'Coin Flip',ic:'🪙',d:'Call it. Wins pay 1.96x your bet.',o:['Heads','Tails'],f:c=>{const h=R()<.5;return{m:(c===0)===h?1.96:0,t:h?'Heads':'Tails'}}},
+ {n:'Dice 1–100',ic:'🎲',d:'Low is 1–50, high is 51–100. Wins pay 1.96x.',o:['Low','High'],f:c=>{const r=ri(1,100);return{m:(c===0?r<=50:r>50)?1.96:0,t:'Rolled '+r}}},
+ {n:'Lucky Wheel',ic:'🎡',d:'Spin the wheel. Segments pay 0x to 3x.',o:['Spin'],f:()=>{const m=pick([[0,4],[.5,2],[1,2],[1.5,1],[2,2],[3,1]]);return{m,t:'Wheel stopped on '+m+'x'}}},
+ {n:'Slots',ic:'🎰',d:'Two alike pays 1.2x. Three alike pays 17x.',o:['Spin'],f:()=>{const r=[ri(0,5),ri(0,5),ri(0,5)],k=new Set(r).size;return{m:k===1?17:k===2?1.2:0,t:r.map(i=>SYM[i]).join(' ')}}},
+ {n:'Roulette',ic:'🔴',d:'Red or Black pays 2x. Green 0 pays 36x.',o:['Red','Black','Green 0'],f:c=>{const n=ri(0,36),k=n===0?2:RED.includes(n)?0:1;return{m:k===c?(c===2?36:2):0,t:n+' ('+['red','black','green'][k]+')'}}},
+ {n:'Lucky 7',ic:'🎯',d:'Two dice. Under or Over 7 pays 2.3x, exactly 7 pays 5.7x.',o:['Under 7','Seven','Over 7'],f:c=>{const s=ri(1,6)+ri(1,6),k=s<7?0:s===7?1:2;return{m:k===c?[2.3,5.7,2.3][c]:0,t:'Dice total '+s}}},
+ {n:'Scratch Card',ic:'🎫',d:'Scratch for a prize from 0x to 20x.',o:['Scratch'],f:()=>{const m=pick([[0,64],[1,20],[2,10],[5,4.5],[20,1.5]]);return{m,t:m?'Matched '+m+'x':'No match'}}},
+ {n:'Safe Tile',ic:'💣',d:'One bomb hides under 4 tiles. Dodge it to win 1.28x.',o:['Tile 1','Tile 2','Tile 3','Tile 4'],f:c=>{const b=ri(0,3);return{m:b===c?0:1.28,t:'The bomb was under tile '+(b+1)}}},
+ {n:'Rocket',ic:'🚀',d:'Pick a cash-out. You win if the rocket flies past it.',o:['1.5x','2x','5x','10x'],f:c=>{const m=[1.5,2,5,10][c],x=Math.max(1,Math.floor(97/(1-R()))/100);return{m:x>=m?m:0,t:'Rocket crashed at '+x.toFixed(2)+'x'}}},
+ {n:'Risk Pick',ic:'💎',d:'Small: 40% for 2.4x. Big: 10% for 9.6x. Jackpot: 1% for 96x.',o:['Small','Big','Jackpot'],f:c=>{const w=R()<[.4,.1,.01][c];return{m:w?[2.4,9.6,96][c]:0,t:w?'Hit!':'Missed'}}}
+];
+function casino(){const u=me();if(!(u.age>=18))return toast('The casino is for accounts aged 18 or over only.');$('discOk').checked=false;$('disc').classList.remove('hidden')}
+function acceptDisc(){if(!$('discOk').checked)return toast('Please tick the box to continue.');$('disc').classList.add('hidden');go('casino')}
+function refill(){const u=me();if(u.chips>=50)return toast('You can claim free chips when you have under 50.');if(u.cday===today())return toast('Free chips already claimed today.');u.chips+=500;u.cday=today();save();casinoRender();toast('+500 free chips')}
+function playC(i,c){const u=me();if(!(u.age>=18))return;if(u.chips==null)u.chips=1000;if(u.chips<bet)return toast('Not enough chips. Lower your bet or claim free chips.');
+ const g=GAMES[i],r=g.f(c),won=Math.round(bet*r.m),net=won-bet;u.chips+=net;u.cnet=(u.cnet||0)+net;save();
+ $('crT').textContent=g.ic+' '+g.n+': '+r.t;$('crV').textContent=won?'Won '+won+' chips ('+(net>=0?'+':'')+net+')':'Lost '+bet+' chips';$('crV').style.color=net>=0?'var(--ok)':'var(--bad)';casinoRender()}
+function casinoRender(){const u=me();if(!u||!$('chips'))return;if(u.chips==null)u.chips=1000;$('chips').textContent=fmt(u.chips);const n=u.cnet||0;$('cnet').textContent='Net result: '+(n>0?'+':'')+n+' chips · Bet per play: '+bet;document.querySelectorAll('#bets .btn').forEach(b=>b.style.outline=+b.dataset.b===bet?'2px solid var(--a)':'')}
+function casinoInit(){BETS.forEach(b=>{const x=document.createElement('button');x.className='btn alt';x.textContent=b;x.dataset.b=b;x.onclick=()=>{bet=b;casinoRender()};$('bets').append(x)});
+ GAMES.forEach((g,i)=>{const c=document.createElement('div');c.className='card';c.innerHTML='<h3>'+g.ic+' '+g.n+'</h3><p class="mute sm">'+g.d+'</p>';const r=document.createElement('div');r.style.cssText='display:flex;gap:8px;flex-wrap:wrap';g.o.forEach((l,j)=>{const b=document.createElement('button');b.className='btn';b.textContent=l;b.onclick=()=>playC(i,j);r.append(b)});c.append(r);$('games').append(c)})}
+// Animated casino (still virtual chips only)
+GAMES[0].k='coin';GAMES[0].d='Pick a side and watch the coin flip. Wins pay 1.96x.';
+GAMES[7]={n:'Mines',ic:'💣',d:'Uncover gems on a 5x5 grid, avoid the mines, cash out any time.',k:'mines',o:[]};
+GAMES[8].k='rocket';GAMES[8].d='Watch the rocket climb. Cash out before it crashes.';
+const HS=[],btn=(l,c,f)=>{const b=document.createElement('button');b.className=c;b.textContent=l;b.onclick=f;return b};
+let rk=null,mi=null,sp=false;const stopAll=()=>{clearInterval(rk);rk=null;mi=null;sp=false};
+function betMul(k){const u=me();let v=Math.floor(+$('betAmt').value||1);v=k?Math.floor(v*k):Math.min(u.chips,1000);$('betAmt').value=Math.max(1,Math.min(1000,v))}
+function bAmt(){const u=me();if(!(u.age>=18)){toast('18+ only.');return 0}if(u.chips==null)u.chips=1000;const b=Math.floor(+$('betAmt').value);if(!(b>=1&&b<=1000)){toast('Bet 1 to 1,000 chips.');return 0}if(b>u.chips){toast('Not enough chips. Lower your bet or claim free chips.');return 0}return b}
+function take(b){const u=me();u.chips-=b;u.cnet=(u.cnet||0)-b;save();casinoRender()}
+function fin(i,b,w,t){const u=me(),g=GAMES[i];if(w){u.chips+=w;u.cnet=(u.cnet||0)+w}save();HS.unshift({w,b});HS.length=Math.min(HS.length,14);
+ $('crT').textContent=g.ic+' '+g.n+': '+t;$('crV').textContent=w?'Won '+w+' chips ('+(w-b>=0?'+':'')+(w-b)+')':'Lost '+b+' chips';$('crV').style.color=w>=b?'var(--ok)':'var(--bad)';casinoRender()}
+function casinoRender(){const u=me();if(!u||!$('chips'))return;if(u.chips==null)u.chips=1000;$('chips').textContent=fmt(u.chips);const n=u.cnet||0;$('cnet').textContent='Net result: '+(n>0?'+':'')+n+' chips';
+ $('hst').innerHTML='';HS.forEach(h=>{const s=document.createElement('span');s.className='badge';s.style.color=h.w>=h.b?'var(--ok)':'var(--bad)';s.textContent=(h.w/h.b).toFixed(2)+'x';$('hst').append(s)})}
+function casinoInit(){const g=$('games');g.innerHTML='';GAMES.forEach((x,i)=>{const c=document.createElement('div');c.className='card';c.innerHTML='<h3>'+x.ic+' '+x.n+'</h3><p class="mute sm">'+x.d+'</p>';c.append(btn('Play','btn',()=>openG(i)));g.append(c)})}
+function openG(i){stopAll();const g=GAMES[i],s=$('stage');s.innerHTML='';const h=document.createElement('div');h.className='stg';h.innerHTML='<h3>'+g.ic+' '+g.n+'</h3><p class="mute sm">'+g.d+'</p><div id="gb"></div>';s.append(h);({coin:coinUI,mines:minesUI,rocket:rocketUI,dice:diceUI,chicken:chickenUI,bj:bjUI}[g.k]||genUI)(i);s.scrollIntoView({behavior:'smooth',block:'nearest'})}
+function genUI(i){const g=GAMES[i];$('gb').innerHTML='<div class="spin" id="gr">?</div><div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center" id="go"></div>';
+ g.o.forEach((l,c)=>$('go').append(btn(l,'btn',()=>{if(sp)return;const a=bAmt();if(!a)return;sp=true;take(a);const r=g.f(c),w=Math.round(a*r.m),gr=$('gr');gr.textContent='🎰';gr.className='spin shk';
+  setTimeout(()=>{sp=false;const e=$('gr');if(e){e.className='spin pp';e.textContent=r.t}fin(i,a,w,r.t)},700)})))}
+function coinUI(i){$('gb').innerHTML='<div class="coin" id="cn">?</div><div style="display:flex;gap:8px;justify-content:center" id="go"></div>';
+ ['Heads','Tails'].forEach((l,c)=>$('go').append(btn(l,'btn',()=>{if(sp)return;const a=bAmt();if(!a)return;sp=true;take(a);const h=R()<.5,w=(c===0)===h?Math.round(a*1.96):0,cn=$('cn');cn.textContent='🪙';cn.className='coin go';
+  setTimeout(()=>{sp=false;const e=$('cn');if(e){e.className='coin';e.textContent=h?'H':'T'}fin(i,a,w,h?'Heads':'Tails')},1100)})))}
+function rocketUI(i){let st='';for(let k=0;k<16;k++)st+='<i style="left:'+ri(2,98)+'%;top:'+ri(-40,100)+'%;animation-delay:-'+(R()*1.2).toFixed(2)+'s"></i>';
+ $('gb').innerHTML='<div class="sky" id="sky">'+st+'<div class="mult" id="mt">1.00x</div><div class="rkt" id="rk">🚀</div></div><div style="display:flex;gap:8px;margin-top:12px" id="go"></div>';
+ const s=btn('Launch','btn',launch),c=btn('Cash out','btn alt',cash);c.disabled=true;$('go').append(s,c);let a=0,x=0,t0=0;
+ function launch(){if(rk)return;a=bAmt();if(!a)return;take(a);x=Math.min(1000,Math.max(1,Math.floor(97/(1-R()))/100));t0=Date.now();s.disabled=true;c.disabled=false;$('sky').classList.remove('shk');$('rk').textContent='🚀';$('rk').style.bottom='20px';
+  rk=setInterval(()=>{if(!$('mt')){stopAll();return}const m=Math.exp(1e-4*(Date.now()-t0));
+   if(m>=x){stopAll();$('mt').textContent=x.toFixed(2)+'x';$('rk').textContent='💥';$('sky').classList.add('shk');c.disabled=true;c.textContent='Cash out';s.disabled=false;fin(i,a,0,'Crashed at '+x.toFixed(2)+'x');return}
+   $('mt').textContent=m.toFixed(2)+'x';$('rk').style.bottom=(20+Math.min(150,(m-1)*40))+'px';c.textContent='Cash out '+Math.floor(a*m)},50)}
+ function cash(){if(!rk)return;const m=Math.exp(1e-4*(Date.now()-t0));if(m>=x)return;stopAll();c.disabled=true;c.textContent='Cash out';s.disabled=false;fin(i,a,Math.floor(a*m),'Cashed out at '+m.toFixed(2)+'x')}}
+function minesUI(i){$('gb').innerHTML='<div style="display:flex;gap:8px;align-items:center;justify-content:center"><span class="sm mute">Mines</span><select id="mn" style="width:auto;margin:0"><option>1</option><option>2</option><option selected>3</option><option>5</option><option>8</option><option>10</option><option>15</option><option>20</option><option>24</option></select></div><div class="mute sm" id="mx" style="margin-top:10px">Max win 1,000x. More mines = bigger payouts.</div><div class="mg" id="mg"></div><div style="display:flex;gap:8px" id="go"></div>';
+ const s=btn('Start','btn',start),c=btn('Cash out','btn alt',cash),tiles=[];c.disabled=true;$('go').append(s,c,btn('Random','btn alt',()=>{const o=tiles.map((t,k)=>k).filter(k=>!tiles[k].className);if(mi&&o.length)pickT(o[ri(0,o.length-1)])}));let a=0,mines=null,rv=0,N=3;
+ for(let k=0;k<25;k++){const t=document.createElement('button');t.textContent='?';t.disabled=true;t.setAttribute('aria-label','Tile '+(k+1));t.onclick=()=>pickT(k);$('mg').append(t);tiles.push(t)}
+ const mm=r=>{let m=.97;for(let k=0;k<r;k++)m*=(25-k)/(25-N-k);return Math.min(m,1000)};
+ function start(){if(mi)return;a=bAmt();if(!a)return;take(a);N=+$('mn').value;mines=new Set();while(mines.size<N)mines.add(ri(0,24));rv=0;mi=1;$('mx').textContent='Next gem '+mm(1).toFixed(2)+'x';s.disabled=true;$('mn').disabled=true;c.disabled=true;c.textContent='Cash out';tiles.forEach(t=>{t.disabled=false;t.className='';t.style.opacity='';t.textContent='?'})}
+ function end(){mi=null;s.disabled=false;$('mn').disabled=false;c.disabled=true;tiles.forEach((t,k)=>{t.disabled=true;if(!t.className){t.className=mines.has(k)?'bomb':'gem';t.textContent=mines.has(k)?'💣':'💎';t.style.opacity=.55}})}
+ function pickT(k){if(!mi)return;const t=tiles[k];if(mines.has(k)){t.className='bomb';t.textContent='💥';end();const st=$('stage');st.classList.add('shk');setTimeout(()=>st.classList.remove('shk'),400);fin(i,a,0,'Hit a mine after '+rv+' gems');return}
+  t.className='gem';t.textContent='💎';t.disabled=true;rv++;c.disabled=false;c.textContent='Cash out '+Math.floor(a*mm(rv));$('mx').textContent='Now '+mm(rv).toFixed(2)+'x · Next '+(rv<25-N?mm(rv+1).toFixed(2)+'x':'-');if(rv===25-N)cash()}
+ function cash(){if(!mi||!rv)return;const w=Math.floor(a*mm(rv)),r=rv;end();c.textContent='Cash out';fin(i,a,w,'Cashed out '+r+' gems at '+mm(r).toFixed(2)+'x')}}
+// Animations for the remaining games
+const DF=['⚀','⚁','⚂','⚃','⚄','⚅'],SEG=[0,2,.5,0,1,3,0,1.5,.5,0,1,2];let wr=0;
+const tick=(fn,ms,n,end)=>{let k=0;const t=setInterval(()=>{fn(k);if(++k>=n){clearInterval(t);end&&end()}},ms)};
+const setT=(t,c)=>{const e=$('gr');if(e){e.textContent=t;if(c!=null)e.className=c}};
+const wheelH=()=>{wr=0;let g='conic-gradient(',l='';SEG.forEach((m,k)=>{g+=(k?',':'')+(k%2?'#8b5cf6':'#22d3ee')+' '+k*30+'deg '+(k+1)*30+'deg';l+='<b style="position:absolute;left:50%;top:50%;color:#fff;font-size:13px;transform:translate(-50%,-50%) rotate('+(k*30+15)+'deg) translateY(-84px)">'+m+'x</b>'});
+ return '<div style="position:relative;width:220px;height:220px;margin:18px auto"><div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:24px;z-index:2">🔻</div><div id="wh" style="position:relative;width:100%;height:100%;border-radius:50%;background:'+g+');transition:transform 3.5s cubic-bezier(.17,.67,.12,1);border:4px solid var(--line)">'+l+'</div></div>'};
+const V={
+ 1:{h:()=>'<div class="spin" id="gr" style="font-size:64px">🎲</div>',run:(r,c,d)=>{const n=+r.t.slice(7);tick(()=>setT(ri(1,100),'spin'),60,14,()=>{setT(n,'spin pp');d()})}},
+ 2:{h:wheelH,run:(r,c,d)=>{const ix=SEG.map((x,k)=>x===r.m?k:-1).filter(k=>k>=0),i=ix[ri(0,ix.length-1)],A=-(i*30+15)+ri(-10,10);wr+=1800+(((A-wr)%360)+360)%360;$('wh').style.transform='rotate('+wr+'deg)';setTimeout(d,3600)}},
+ 3:{h:()=>'<div class="spin" id="gr" style="font-size:56px;letter-spacing:8px">🎰</div>',run:(r,c,d)=>{const f=r.t.split(' '),st=[0,0,0],iv=setInterval(()=>setT([0,1,2].map(k=>st[k]?f[k]:SYM[ri(0,5)]).join(' '),'spin'),70);[700,1150,1600].forEach((t,k)=>setTimeout(()=>{st[k]=1},t));setTimeout(()=>{clearInterval(iv);setT(f.join(' '),'spin pp');d()},1750)}},
+ 4:{h:()=>'<div class="spin" id="gr" style="font-size:60px">🎡</div>',run:(r,c,d)=>{const n=parseInt(r.t);let k=0;const step=()=>{const x=k<20?ri(0,36):n,e=$('gr');if(e){e.textContent=x;e.style.color=x===0?'#34d399':RED.includes(x)?'#f87171':'var(--text)'}if(++k<=20)setTimeout(step,50+k*12);else{if(e)e.className='spin pp';d()}};step()}},
+ 5:{h:()=>'<div class="spin" id="gr" style="font-size:64px">⚀ ⚀</div>',run:(r,c,d)=>{const s=+r.t.slice(11),a=ri(Math.max(1,s-6),Math.min(6,s-1)),b=s-a;tick(()=>setT(DF[ri(0,5)]+' '+DF[ri(0,5)],'spin'),90,10,()=>{setT(DF[a-1]+' '+DF[b-1],'spin pp');d()})}},
+ 6:{h:()=>'<div style="display:flex;gap:10px;justify-content:center;margin:16px 0" id="gr">'+[0,1,2].map(()=>'<div class="coin" style="width:78px;height:78px;border-radius:14px;font-size:34px;margin:0">🪙</div>').join('')+'</div>',run:(r,c,d)=>{const P={1:'🍀',2:'⭐',5:'💎',20:'👑'},sy=r.m?[P[r.m],P[r.m],P[r.m]]:Object.values(P).slice(0,3).sort(()=>R()-.5);
+  document.querySelectorAll('#gr .coin').forEach((e,k)=>setTimeout(()=>{e.textContent=sy[k];e.className='coin pp';e.style.background='var(--p2)'},500+k*450));setTimeout(d,500+3*450)}},
+ 9:{h:()=>'<div style="display:flex;gap:16px;justify-content:center;font-size:52px;margin:16px 0" id="gr"><span>🎁</span><span>🎁</span><span>🎁</span></div>',run:(r,c,d)=>{const e=$('gr');if(!e)return d();const s=e.children;[...s].forEach(x=>{x.textContent='🎁';x.style.animation=''});s[c].style.animation='shake .4s 2';setTimeout(()=>{s[c].textContent=r.m?'💰':'💨';s[c].style.animation='pop .4s';d()},800)}}
+};
+function genUI(i){const g=GAMES[i],v=V[i];$('gb').innerHTML=v.h()+'<div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:10px" id="go"></div>';
+ g.o.forEach((l,c)=>$('go').append(btn(l,'btn',()=>{if(sp)return;const a=bAmt();if(!a)return;sp=true;take(a);const r=g.f(c),w=Math.round(a*r.m);v.run(r,c,()=>{sp=false;fin(i,a,w,r.t)})})))}
+// Casino-style Dice and Chicken Road
+GAMES[1]={n:'Dice',ic:'🎲',d:'Set your own odds: roll under or over a target. Up to 49x.',k:'dice',o:[]};
+GAMES.push({n:'Chicken Road',ic:'🐔',d:'Hop across the lanes. Each safe hop raises your payout. Cash out before a car hits.',k:'chicken',o:[]});
+const sx=(id,t)=>{const e=$(id);if(e)e.textContent=t};
+function diceUI(i){let over=false,t=50;
+ $('gb').innerHTML='<div class="big" id="dr" style="font-size:54px">50.00</div><div id="dbar" style="position:relative;height:16px;border-radius:8px;margin:18px 6px"><div id="dm" style="position:absolute;top:-8px;left:50%;width:4px;height:32px;background:#fff;border-radius:2px;transition:left .8s cubic-bezier(.2,.8,.2,1)"></div></div><input type="range" id="dt" min="2" max="98" value="50" aria-label="Roll target"><div class="sm mute" style="display:flex;justify-content:space-around"><span>Win chance <b id="dc"></b></span><span>Payout <b id="dp"></b></span></div><div style="display:flex;gap:8px;margin-top:12px" id="go"></div>';
+ const upd=()=>{t=+$('dt').value;const ch=over?100-t:t;sx('dc',ch+'%');sx('dp',(97/ch).toFixed(2)+'x');const a='#34d399',b='#f87171';$('dbar').style.background='linear-gradient(90deg,'+(over?b:a)+' '+t+'%,'+(over?a:b)+' '+t+'%)'};
+ const tg=btn('Roll Under','btn alt',()=>{over=!over;tg.textContent=over?'Roll Over':'Roll Under';upd()});
+ const ro=btn('Roll','btn',()=>{if(sp)return;const a=bAmt();if(!a)return;sp=true;take(a);const ch=over?100-t:t,r=ri(0,9999)/100,win=over?r>=t:r<t,w=win?Math.floor(a*97/ch):0;
+  $('dm').style.left=r+'%';tick(()=>sx('dr',(R()*100).toFixed(2)),50,14,()=>{sx('dr',r.toFixed(2));const e=$('dr');if(e){e.style.color=win?'var(--ok)':'var(--bad)';e.className='big pp'}sp=false;fin(i,a,w,'Rolled '+r.toFixed(2)+(over?' (needed '+t+' or more)':' (needed under '+t+')'))})});
+ $('dt').oninput=upd;$('go').append(tg,ro);upd()}
+function chickenUI(i){const L=10,P={Easy:.9,Medium:.8,Hard:.7,Insane:.5};let ln='';for(let n=1;n<=L;n++)ln+='<div id="ln'+n+'" style="flex:1;border-left:2px dashed rgba(255,255,255,.2);text-align:center;font-size:10px;color:#fff;padding-top:104px"></div>';
+ $('gb').innerHTML='<div style="display:flex;gap:8px;align-items:center;justify-content:center"><span class="sm mute">Difficulty</span><select id="df" style="width:auto;margin:0">'+Object.keys(P).map(x=>'<option'+(x==='Medium'?' selected':'')+'>'+x+'</option>').join('')+'</select></div><div style="position:relative;height:130px;margin:12px 0;border-radius:12px;background:#2b2f3a;overflow:hidden;display:flex"><div style="width:9%;background:#166534"></div>'+ln+'<div id="ck" style="position:absolute;bottom:34px;left:2%;font-size:32px;transition:left .3s">🐔</div><div id="car" style="position:absolute;top:-44px;font-size:32px">🚗</div></div><div class="mute sm" id="cx">Choose a difficulty and press Start.</div><div style="display:flex;gap:8px;margin-top:8px" id="go"></div>';
+ const s=btn('Start','btn',start),g=btn('Go','btn',go),c=btn('Cash out','btn alt',cash);g.disabled=c.disabled=true;$('go').append(s,g,c);let a=0,k=0,p=.8,on=false;
+ const mu=n=>.97/Math.pow(p,n),lx=n=>(9+(n-.5)*9.1-3.5)+'%';
+ function start(){if(on||sp)return;a=bAmt();if(!a)return;take(a);p=P[$('df').value];k=0;on=true;s.disabled=true;$('df').disabled=true;g.disabled=false;c.disabled=true;c.textContent='Cash out';const ck=$('ck');ck.textContent='🐔';ck.style.left='2%';for(let n=1;n<=L;n++){sx('ln'+n,mu(n).toFixed(2)+'x');$('ln'+n).style.color='#fff'}sx('cx','Next hop pays '+mu(1).toFixed(2)+'x')}
+ function go(){if(!on||sp)return;sp=true;g.disabled=true;c.disabled=true;const n=k+1,hit=R()>p,ck=$('ck'),car=$('car'),ok=()=>document.body.contains(ck);car.style.transition='none';car.style.left=lx(n);car.style.top='-44px';void car.offsetWidth;
+  if(hit){ck.style.left=lx(n);setTimeout(()=>{car.style.transition='top .35s ease-in';car.style.top='52px';setTimeout(()=>{sp=false;on=false;if(ok()){ck.textContent='💥';s.disabled=false;$('df').disabled=false}fin(i,a,0,'Hit by a car on lane '+n)},400)},320)}
+  else{setTimeout(()=>{car.style.transition='top .5s ease-in';car.style.top='150px';setTimeout(()=>{ck.style.left=lx(n);setTimeout(()=>{sp=false;k=n;if(!ok())return;$('ln'+n).style.color='#34d399';c.disabled=false;c.textContent='Cash out '+Math.floor(a*mu(k));g.disabled=k>=L;sx('cx','Now '+mu(k).toFixed(2)+'x'+(k<L?' · next '+mu(k+1).toFixed(2)+'x':''));if(k>=L)cash()},320)},550)},50)}}
+ function cash(){if(!on||sp||!k)return;const w=Math.floor(a*mu(k));on=false;s.disabled=false;$('df').disabled=false;g.disabled=true;c.disabled=true;c.textContent='Cash out';fin(i,a,w,'Cashed out on lane '+k+' at '+mu(k).toFixed(2)+'x')}}
+GAMES.push({n:'Blackjack',ic:'\ud83c\udccf',d:'Beat the dealer to 21. Blackjack pays 3:2. Double down allowed.',k:'bj',o:[]});
+function bjUI(i){const S='\u2660\u2665\u2666\u2663',K='A 2 3 4 5 6 7 8 9 10 J Q K'.split(' ');let dk=[],P=[],D=[],a=0,st=0,on=false,hole=null;
+ $('gb').innerHTML='<div class="felt"><div class="sm">Dealer <b id="dv">-</b></div><div class="hand" id="dh"></div><div class="hand" id="ph"></div><div class="sm">You <b id="pv">-</b></div></div><div id="go" style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;justify-content:center"></div>';
+ const root=$('gb'),ok=()=>document.body.contains(root),q=(f,ms)=>setTimeout(()=>{if(ok())f()},ms),
+ val=h=>{let v=0,x=0;h.forEach(c=>{const r=c.slice(0,-1);v+=r==='A'?(x++,11):'JQK'.includes(r)?10:+r});while(v>21&&x){v-=10;x--}return v},
+ face=(e,c)=>{e.className='pc'+('\u2665\u2666'.includes(c.slice(-1))?' red':'');e.innerHTML='<b>'+c.slice(0,-1)+'</b><i>'+c.slice(-1)+'</i>'},
+ add=(h,box,down)=>{const c=dk.pop(),e=document.createElement('div');h.push(c);if(down)e.className='pc down';else face(e,c);e.classList.add('deal');$(box).append(e);return e},
+ upd=f=>{sx('pv',val(P));sx('dv',f?val(D):val([D[0]]))},
+ bs=[btn('Deal','btn',deal),btn('Hit','btn',hit),btn('Stand','btn alt',stand),btn('Double','btn alt',dbl)],set=(...f)=>bs.forEach((b,k)=>b.disabled=!!f[k]);
+ $('go').append(...bs);set(0,1,1,1);
+ function end(t,w){on=false;sp=false;set(0,1,1,1);fin(i,st,w,t)}
+ function settle(){const p=val(P),d=val(D);if(d>21)end('Dealer busts with '+d,2*st);else if(p>d)end('You win, '+p+' to '+d,2*st);else if(p===d)end('Push at '+p,st);else end('Dealer wins, '+d+' to '+p,0)}
+ function reveal(){face(hole,D[1]);hole.classList.add('flipc');upd(true)}
+ function deal(){if(on||sp)return;a=bAmt();if(!a)return;take(a);st=a;on=true;sp=true;dk=[];for(const s of S)for(const r of K)dk.push(r+s);for(let k=51;k>0;k--){const j=ri(0,k);[dk[k],dk[j]]=[dk[j],dk[k]]}
+  P=[];D=[];$('ph').innerHTML='';$('dh').innerHTML='';sx('pv','-');sx('dv','-');set(1,1,1,1);add(P,'ph');q(()=>add(D,'dh'),350);q(()=>{add(P,'ph');upd(false)},700);
+  q(()=>{hole=add(D,'dh',true);upd(false);const pb=val(P)===21,db=val(D)===21;if(pb||db){reveal();q(()=>pb&&db?end('Both have blackjack: push',st):pb?end('Blackjack! Pays 3:2',Math.floor(st*2.5)):end('Dealer has blackjack',0),700)}else{sp=false;set(0,0,0,me().chips<a)}},1050)}
+ function hit(){if(!on||sp)return;add(P,'ph');upd(false);set(1,0,0,1);const v=val(P);if(v>21)end('Bust with '+v,0);else if(v===21)stand()}
+ function stand(){if(!on||sp)return;sp=true;set(1,1,1,1);reveal();const step=()=>{if(val(D)<17){add(D,'dh');upd(true);q(step,650)}else settle()};q(step,700)}
+ function dbl(){if(!on||sp||P.length!==2)return;if(me().chips<a)return toast('Not enough chips to double.');take(a);st=a*2;add(P,'ph');upd(false);const v=val(P);if(v>21)end('Bust with '+v,0);else stand()}}
+boxes();casinoInit();window.onload=init;
+</script>
+</body>
+</html>
